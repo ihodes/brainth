@@ -26,10 +26,11 @@ and NOR logic gates, and inspecting error before and after.
 (def +expecteds+ [[1, 1, 0, 0] [0, 1, 1, 0] [0, 1, 1, 0] [0, 0, 0, 1]])
 
 (def +untrained-logic-network+
-(initialize-network-weights 2 3 4))
+  (initialize-network-weights 2 3 4))
 
 (def +trained-logic-network+
-(nth (train +inputs+ +expecteds+ +untrained-logic-network+) 100))
+  (nth (train +inputs+ +expecteds+ +untrained-logic-network+)
+       100))
 
 (set-error +inputs+ +expecteds+ +untrained-logic-network+)
 (set-error +inputs+ +expecteds+ +trained-logic-network+)
