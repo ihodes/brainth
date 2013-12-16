@@ -26,14 +26,15 @@ and NOR logic gates, and inspecting error before and after.
 (def +expecteds+ [[1, 1, 0, 0] [0, 1, 1, 0] [0, 1, 1, 0] [0, 0, 0, 1]])
 
 (def +untrained-logic-network+
-  (initialize-network-weights 2 3 4))
+  (initialize-network-weights 2 3 4)) ; 2 input nodes, 3 hidden nodes, 4 output nodes
+  ;; try, e.g. 2 3 3 4, for 2 hidden layers
 
 (def +trained-logic-network+
   (nth (train +inputs+ +expecteds+ +untrained-logic-network+)
-       100))
+       100)) ;; take the 100th trained network (train returns an infinite seq)
 
-(set-error +inputs+ +expecteds+ +untrained-logic-network+)
-(set-error +inputs+ +expecteds+ +trained-logic-network+)
+(set-error +inputs+ +expecteds+ +untrained-logic-network+) ;; get the error before
+(set-error +inputs+ +expecteds+ +trained-logic-network+)   ;; and after training
 ```
 
 NB: Momentum was purposefully left out. Though adding it would be trivial, it obfuscates the code to keep a copy of the weight changes from the previous round. 
